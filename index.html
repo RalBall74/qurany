@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>قرآني - تطبيق القران الكريم</title>
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Tajawal:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="light-mode">
+    <div class="app-container">
+        <!-- Header Section -->
+        <header class="top-header">
+            <div class="header-top">
+                <div class="logo">
+                    <i class="fas fa-quran"></i>
+                    <span>قرآني</span>
+                </div>
+                <div class="user-actions">
+                    <button id="sleep-timer-btn" title="مؤقت النوم"
+                        style="background: none; border: none; font-size: 1.2rem; color: var(--text-muted); margin-left: 15px;">
+                        <i class="fas fa-clock"></i>
+                    </button>
+                    <div class="theme-toggle" style="display: inline-block; vertical-align: middle;">
+                        <input type="checkbox" id="theme-switch" />
+                        <label for="theme-switch" class="switch-label">
+                            <i class="fas fa-moon"></i>
+                            <i class="fas fa-sun"></i>
+                            <span class="ball"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="search-bar">
+                <i class="fas fa-search" style="color: var(--text-muted);"></i>
+                <input type="text" id="surah-search" placeholder="ابحث عن سورة...">
+            </div>
+        </header>
+
+        <!-- Main Scrollable Content -->
+        <main class="main-content">
+            <section id="content-area" class="content-scroll">
+                <!-- Reciter Carousel -->
+                <div class="section-header">
+                    <h2>القراء</h2>
+                </div>
+                <div id="reciters-grid" class="reciters-carousel">
+                    <!-- Reciter cards injected here -->
+                </div>
+
+                <!-- Surah List -->
+                <div class="section-header">
+                    <h2 id="current-category">السور</h2>
+                </div>
+                <div id="surah-list" class="surah-grid">
+                    <div class="loader">جاري التحميل...</div>
+                </div>
+            </section>
+
+            <!-- Ayah Viewer Overlay -->
+            <div id="ayah-viewer" class="ayah-viewer">
+                <div class="ayah-header">
+                    <h3 id="viewer-title">سورة الفاتحة</h3>
+                    <button id="close-viewer"><i class="fas fa-times"></i></button>
+                </div>
+                <div id="ayah-content" class="ayah-content">
+                </div>
+            </div>
+        </main>
+
+        <!-- Floating Player Bar -->
+        <footer class="player-bar">
+            <!-- Info & Actions Row -->
+            <div class="song-info">
+                <div class="info-left">
+                    <img src="4.jpg" alt="Reciter" id="player-img">
+                    <div class="text">
+                        <h4 id="player-surah">اختر سورة</h4>
+                        <p id="player-reciter">ماher المعيقلي</p>
+                    </div>
+                </div>
+                <div class="info-actions">
+                    <button id="show-text-btn" class="text-btn" title="عرض الآيات"><i
+                            class="fas fa-file-alt"></i></button>
+                    <button id="fav-btn" class="fav-btn"><i class="far fa-heart"></i></button>
+                </div>
+            </div>
+
+            <!-- Controls & Progress Column -->
+            <div class="player-controls">
+                <div class="progress-area">
+                    <span id="current-time" class="time-label">00:00</span>
+                    <div class="progress-bar">
+                        <div id="progress-filled"></div>
+                    </div>
+                    <span id="duration" class="time-label">00:00</span>
+                </div>
+                <div class="buttons">
+                    <button id="prev-btn"><i class="fas fa-step-backward"></i></button>
+                    <button id="play-btn" class="play-main"><i class="fas fa-play"></i></button>
+                    <button id="next-btn"><i class="fas fa-step-forward"></i></button>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Bottom Navigation -->
+        <nav class="sidebar">
+            <div class="nav-menu">
+                <button class="nav-item active" data-target="home">
+                    <i class="fas fa-home"></i>
+                    <span>الرئيسية</span>
+                </button>
+                <button class="nav-item" data-target="favorites">
+                    <i class="fas fa-heart"></i>
+                    <span>المفضلة</span>
+                </button>
+            </div>
+        </nav>
+    </div>
+
+    <!-- Sleep Timer Modal -->
+    <div id="timer-modal" class="modal">
+        <div class="modal-content">
+            <h3>مؤقت النوم</h3>
+            <div class="timer-options">
+                <button data-time="15">15 دقيقة</button>
+                <button data-time="30">30 دقيقة</button>
+                <button data-time="60">60 دقيقة</button>
+                <button data-time="0">إيقاف</button>
+            </div>
+            <button id="close-timer">إلغاء</button>
+        </div>
+    </div>
+
+    <audio id="main-audio" src=""></audio>
+    <script src="js/reciters.js"></script>
+    <script src="js/app.js"></script>
+</body>
+
+</html>
