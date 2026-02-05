@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-E6FX97WVER"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-E6FX97WVER');
+</script>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>قرآني - انشاء عاصم</title>
+    <link rel="stylesheet" href="style.css">
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&family=Tajawal:wght@300;400;500;700&display=swap"
+        rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0d6efd">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body class="light-mode">
+    <div class="app-container">
+        <!-- Header Section -->
+        <header class="top-header">
+            <div class="header-top">
+                <div class="logo">
+                    <img src="icon-512x512.jpg" alt="Logo" class="logo-img">
+                    <span>قرآني</span>
+                </div>
+                <div class="user-actions">
+                    <button id="sleep-timer-btn" title="مؤقت النوم"
+                        style="background: none; border: none; font-size: 1.2rem; color: var(--text-muted); margin-left: 15px;">
+                        <i class="fas fa-clock"></i>
+                    </button>
+                    <div class="theme-toggle" style="display: inline-block; vertical-align: middle;">
+                        <input type="checkbox" id="theme-switch" />
+                        <label for="theme-switch" class="switch-label">
+                            <i class="fas fa-moon"></i>
+                            <i class="fas fa-sun"></i>
+                            <span class="ball"></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="search-bar">
+                <i class="fas fa-search" style="color: var(--text-muted);"></i>
+                <input type="text" id="surah-search" placeholder="ابحث عن سورة أو آية...">
+                <div class="search-toggle-btn" id="search-type-toggle" title="تغيير نوع البحث">
+                    <span id="search-type-label">سورة</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Scrollable Content -->
+        <main class="main-content">
+            <section id="content-area" class="content-scroll">
+                <!-- Reciter Carousel -->
+                <div class="section-header">
+                    <h2>القراء</h2>
+                </div>
+                <div id="reciters-grid" class="reciters-carousel">
+                    <!-- Reciter cards injected here -->
+                </div>
+
+                <!-- Surah List -->
+                <div class="section-header">
+                    <h2 id="current-category">السور</h2>
+                </div>
+                <div id="surah-list" class="surah-grid">
+                    <div class="loader">جاري التحميل...</div>
+                </div>
+            </section>
+
+            <!-- AI Chat Section -->
+            <section id="ai-section" class="ai-view">
+                <div class="ai-header">
+                    <h2>مساعدك الذكي</h2>
+                    <p>اسألني عن أي شيء في القرآن أو الدين</p>
+                </div>
+                <div id="chat-container" class="chat-container">
+                    <div class="message ai-message">
+                        <div class="message-avatar"><i class="fas fa-robot"></i></div>
+                        <div class="message-content">مرحباً! أنا مساعدك الذكي المعتمد على Gemini. كيف يمكنني مساعدتك في
+                            رحلتك القرآنية اليوم؟</div>
+                    </div>
+                </div>
+                <div class="chat-input-area">
+                    <div class="chat-input-wrapper">
+                        <input type="text" id="ai-input" placeholder="اكتب سؤالك هنا..." autocomplete="off">
+                    </div>
+                    <button id="send-ai-btn" disabled><i class="fas fa-paper-plane"></i></button>
+                </div>
+            </section>
+
+            <!-- Ayah Viewer Overlay -->
+            <div id="ayah-viewer" class="ayah-viewer">
+                <div class="ayah-header">
+                    <h3 id="viewer-title">سورة الفاتحة</h3>
+                    <button id="close-viewer"><i class="fas fa-times"></i></button>
+                </div>
+                <div id="ayah-content" class="ayah-content">
+                </div>
+            </div>
+        </main>
+
+        <!-- Floating Player Bar -->
+        <footer class="player-bar">
+            <!-- Info & Actions Row -->
+            <div class="song-info">
+                <div class="info-left">
+                    <img src="4.jpg" alt="Reciter" id="player-img">
+                    <div class="text">
+                        <h4 id="player-surah">اختر سورة</h4>
+                        <p id="player-reciter">ماher المعيقلي</p>
+                    </div>
+                </div>
+                <div class="info-actions">
+                    <button id="show-text-btn" class="text-btn" title="عرض الآيات"><i
+                            class="fas fa-file-alt"></i></button>
+                    <button id="fav-btn" class="fav-btn"><i class="far fa-heart"></i></button>
+                </div>
+            </div>
+
+            <!-- Controls & Progress Column -->
+            <div class="player-controls">
+                <div class="progress-area">
+                    <span id="current-time" class="time-label">00:00</span>
+                    <div class="progress-bar">
+                        <div id="progress-filled"></div>
+                    </div>
+                    <span id="duration" class="time-label">00:00</span>
+                </div>
+                <div class="buttons">
+                    <button id="prev-btn"><i class="fas fa-step-backward"></i></button>
+                    <button id="play-btn" class="play-main"><i class="fas fa-play"></i></button>
+                    <button id="next-btn"><i class="fas fa-step-forward"></i></button>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Bottom Navigation -->
+        <nav class="sidebar">
+            <div class="nav-menu">
+                <button class="nav-item active" data-target="home">
+                    <i class="fas fa-home"></i>
+                    <span>الرئيسية</span>
+                </button>
+                <button class="nav-item" data-target="favorites">
+                    <i class="fas fa-heart"></i>
+                    <span>المفضلة</span>
+                </button>
+                <button class="nav-item" data-target="ai">
+                    <i class="fas fa-robot"></i>
+                    <span>المساعد</span>
+                </button>
+            </div>
+            <div class="app-copyright">حقوق الملكية © عاصم محمد كمال ابو النصر</div>
+        </nav>
+    </div>
+
+    <!-- Sleep Timer Modal -->
+    <div id="timer-modal" class="modal">
+        <div class="modal-content">
+            <h3>مؤقت النوم</h3>
+            <div class="timer-options">
+                <button data-time="15">15 دقيقة</button>
+                <button data-time="30">30 دقيقة</button>
+                <button data-time="60">60 دقيقة</button>
+                <button data-time="0">إيقاف</button>
+            </div>
+            <button id="close-timer">إلغاء</button>
+        </div>
+    </div>
+
+    <audio id="main-audio" src=""></audio>
+    <script src="reciters.js"></script>
+    <script src="app.js"></script>
+    <script src="ai-service.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+
+
+</html>
